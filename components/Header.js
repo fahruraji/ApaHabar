@@ -5,7 +5,7 @@ import moment from 'moment';
 export default function Header() {
     const date = moment()
         .utcOffset('+08:00')
-        .format('DD MMMM YYYY');
+        .format('ddd, DD MMMM YYYY');
 
     return (
         <View style={styles.container}>

@@ -17,7 +17,7 @@ export default function App() {
       getNews();
       const interval=setInterval(()=>{
         getNews()
-      },100000)
+      },600000)
       return()=>clearInterval(interval)
   }, [])
 
@@ -44,7 +44,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <Header />
       <ScrollView>
-        <Text style={styles.sectionHeader}>Berita Terbaru</Text>
+        <Text style={styles.sectionHeader}>Berita Terkini</Text>
         {isLoading ? <ActivityIndicator size="large" color="#DA3349" /> : (
           <LatestNews />
         )}

@@ -11,7 +11,7 @@ export default function LatestNews() {
     useEffect(()=> {
         getLatestNews();
         const interval=setInterval(()=>{
-            getLatestNews()
+            getLatestNews();
           },10000)
           return()=>clearInterval(interval)
     }, [])
@@ -52,7 +52,7 @@ export default function LatestNews() {
                                         <View style={styles.textWrapper}>
                                         <View style={{flexDirection:'row', justifyContent:'space-between',}}>
                                             <Text style={styles.published}>ANTARA News</Text>
-                                            <Text style={styles.published}>{moment(item.pubDate).format('D MMM YYYY hh:mm')}</Text>
+                                            <Text style={styles.published}>{moment(item.pubDate).format('D MMM YYYY HH:mm')}</Text>
                                         </View>
                                         <Text style={styles.title}>{ item.title }</Text>
                                         </View>
