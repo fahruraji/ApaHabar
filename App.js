@@ -11,13 +11,15 @@ import Header from './components/Header';
 export default function App() {
   const [isLoading, setLoading] = useState(true);
   const [news, setNews] = useState([]);
-  const [repeater,setRepeater] = useState(0);
   const [title, setTitle] = useState()
 
   useEffect(()=> {
       getNews();
-      setTimeout(() => setRepeater(prevState=>prevState+1), 1000000);
-  }, [repeater])
+      const interval=setInterval(()=>{
+        getNews()
+      },100000)
+      return()=>clearInterval(interval)
+  }, [])
 
   function getNews(category='humaniora', title='Nasional') {
       newAPI.get(`antara/${category}/`)
@@ -42,13 +44,13 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <Header />
       <ScrollView>
-        <Text style={styles.sectionHeader}>Breaking News</Text>
+        <Text style={styles.sectionHeader}>Berita Terbaru</Text>
         {isLoading ? <ActivityIndicator size="large" color="#DA3349" /> : (
           <LatestNews />
         )}
         <Categories getNews={getNews} />
         <Text style={styles.sectionHeader}>{title}</Text>
-        {isLoading ? <ActivityIndicator visible={true} /> : (
+        {isLoading ? <ActivityIndicator visible={true} size="large" color="#DA3349" /> : (
           <FlatList
             data={news.posts}
             keyExtractor={(item, index) => 'key' + index}

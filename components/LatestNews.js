@@ -7,11 +7,13 @@ import newAPI from '../src/api/ApiManager';
 export default function LatestNews() {
     const [isLoading, setLoading] = useState(true);
     const [latestNews, setLatestNews] = useState([]);
-    const [repeater,setRepeater] = useState(0);
   
     useEffect(()=> {
-      getLatestNews();
-    //   setTimeout(() => setRepeater(prevState=>prevState+1), 10000);
+        getLatestNews();
+        const interval=setInterval(()=>{
+            getLatestNews()
+          },10000)
+          return()=>clearInterval(interval)
     }, [])
   
     function getLatestNews() {
