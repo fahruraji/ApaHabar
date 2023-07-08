@@ -1,6 +1,7 @@
 import { StyleSheet, Text, FlatList, SafeAreaView, ActivityIndicator } from 'react-native';
 import { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import newAPI from './src/api/ApiManager';
 import LatestNews from './components/LatestNews';
@@ -43,7 +44,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <Header />
-      <ScrollView>
+      <KeyboardAwareScrollView nestedScrollEnabled>
         <Text style={styles.sectionHeader}>Berita Terkini</Text>
         {isLoading ? <ActivityIndicator size="large" color="#DA3349" /> : (
           <LatestNews />
@@ -59,7 +60,7 @@ export default function App() {
             )}
           />
         )}
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 }
